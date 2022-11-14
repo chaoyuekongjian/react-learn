@@ -1,53 +1,38 @@
 import React, { Component } from 'react'
 import CommonTypes from '../../../utils/CommonTypes'
 import PropTypes from 'prop-types'
+import withDataGroup from '../HOC/withDataGroup'
 
-/**
- * 一组单选框
- */
-export default class RadioBoxGroup extends Component {
-
-    static defaultProps = {
-        datas: [],
-        value: []
-    }
-
+class Radio extends Component {
     static propTypes = {
-        datas: CommonTypes.groupDatas.isRequired,
         name: PropTypes.string.isRequired,
-        value: PropTypes.string.isRequired,
-        onChange: PropTypes.func // 约束为函数 但不是必填
+        info: PropTypes.string.isRequired, // 当前单选框的value
+        value: PropTypes.string.isRequired, // 当前选中的value
+        onChange: PropTypes.func
     }
 
-
-    handleChange = e => {
-        this.props.onChange && this.props.onChange(e.target.value, this.props.name, e);
-    }
-
-    /**
-     * 得到一组单选框
-     */
-    getRadios() {
-        return this.props.datas.map(it => (
-            <label key={it.value}>
-                <input
-                    type="radio"
-                    name={this.props.name}
-                    value={it.value}
-                    checked={this.props.value === it.value}
-                    onChange={this.handleChange}
-                />
-                {it.text}
-            </label>
-        ));
+    handleChange = () => {
+        this.props.onChange && this.props.onChange(this.props.info.value)
     }
 
     render() {
-        const bs = this.getRadios();
         return (
-            <div>
-                {bs}
-            </div>
+            <label>
+                <input
+                    type="radio"
+                    name={this.props.name}
+                    value={this.props.info.value}
+                    checked={this.props.value === this.props.info.value}
+                    onChange={this.handleChange}
+                />
+                {this.props.info.text}
+            </label>
         )
     }
 }
+
+const radios = withDataGroup(Radio)
+/**
+ * 一组单选框
+ */
+export default radios
