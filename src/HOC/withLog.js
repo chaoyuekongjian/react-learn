@@ -1,0 +1,21 @@
+import React from 'react'
+
+export default function withLog(Comp, str) {
+  return class LogWrapper extends React.Component {
+
+    componentDidMount() {
+      console.log(`组件${Comp.name}被创建了！${Date.now()}`)
+    }
+
+    componentWillUnmount() {
+      console.log(`组件${Comp.name}被销毁了${Date.now()}`)
+    }
+
+    render() {
+      return <>
+        {str}
+        <Comp {...this.props} />
+      </>
+    }
+  }
+}

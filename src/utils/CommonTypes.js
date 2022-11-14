@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-export default {
+const types = {
   children: PropTypes.node,
   groupDatas: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string.isRequired,
@@ -8,3 +8,5 @@ export default {
   })),
   chooseDatas: PropTypes.arrayOf(PropTypes.string)
 }
+
+export default types
