@@ -7,12 +7,12 @@ export default class FormInput extends Component {
 
   static contextType = ctx
 
-  propTypes = {
+  static propTypes = {
     name: PropTypes.string.isRequired, // 文本框的名称
     type: PropTypes.string.isRequired, // 文本框的类型
   }
 
-  defaultProps = {
+  static defaultProps = {
     type: 'text',
   }
 
