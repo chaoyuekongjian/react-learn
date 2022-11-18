@@ -119,4 +119,8 @@ PropTypes.exact({...})：//对象必须精确匹配传递的数据
 
 
 # reducer hook
-- flux: facebook的一个数据流框架，单向数据流，数据存储在数据仓库中，
+- flux: facebook的一个数据流框架，单向数据流，数据存储在数据仓库中
+
+# callback hook
+- 用于得到一个固定引用值的函数，通常用它进行性能优化
+- useCallback
