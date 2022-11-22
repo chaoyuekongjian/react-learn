@@ -124,3 +124,22 @@ PropTypes.exact({...})：//对象必须精确匹配传递的数据
 # callback hook
 - 用于得到一个固定引用值的函数，通常用它进行性能优化
 - useCallback
+
+
+# 路由的两种模式
+- 路由：根据不同的页面地址，展示不同的组件
+- history路由模式
+- hash路由模式
+
+# 路由组件
+## router组件
+- 不做任何显示，仅提供路由模式配置，另外，该组件会产生一个上下文，上下文会提供一些实用的对象和方法，供其他组件使用
+1. HashRouter:实用hash模式匹配
+2. BrowserRouter:实用browser history匹配
+- 通常情况下，router组件只有一个，该组件包裹整个页面
+
+## route组件
+1. path匹配的路径 默认情况下不区分大小写 
+  1. sensitive属性设置为true则区分大小写
+  2. 默认情况下只匹配初始目录，如果要精确匹配，则要加exact属性
+2. component匹配的组件
