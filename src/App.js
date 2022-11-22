@@ -1,4 +1,4 @@
-import { Transition } from 'react-transition-group';
+import { Transition, cssTransition } from 'react-transition-group';
 import { useState, useRef, useCallback } from 'react';
 
 const duration = 500;
@@ -27,16 +27,19 @@ export default function App() {
   const nodeRef = useRef(null);
   return (
     <div>
-      <Transition nodeRef={nodeRef} in={inProp} timeout={duration}>
+      <div>123123</div>
+      <Transition nodeRef={nodeRef} in={inProp} timeout={duration} apear>
         {
-          state => (
-            <div ref={nodeRef} style={{
-              ...defaultStyle,
-              ...transitionStyles[state]
-            }}>
-              I'm a fade Transition!
-            </div>
-          )
+          state => {
+            return (
+              <div ref={nodeRef} style={{
+                ...defaultStyle,
+                ...transitionStyles[state]
+              }}>
+                I'm a fade Transition!
+              </div>
+            )
+          }
         }
       </Transition>
       <button onClick={handleClick}>
