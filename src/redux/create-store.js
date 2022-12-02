@@ -1,3 +1,4 @@
+import applyMiddleware from "./apply-middleware";
 import ActionTypes from "./utils/action-types";
 import { isPlainObject } from "./utils/is-plain-object"
 
@@ -7,10 +8,20 @@ import { isPlainObject } from "./utils/is-plain-object"
  * @param {*} reducer reducer
  * @param {*} defaultState 默认状态值
  */
-export default function createStore(reducer, defaultState) {
+export default function createStore(reducer, defaultState, enhanced) {
 
-  const curReducer = reducer
-  const curState = defaultState
+  if (typeof defaultState === "function") {
+    // 第二个参数是应用中间件的函数
+    enhanced = defaultState
+    defaultState = undefined
+  }
+  
+  if (typeof enhanced === "function") {
+    return applyMiddleware(createStore)(reducer, defaultState)
+  }
+
+  let curReducer = reducer
+  let curState = defaultState
   const listeners = [] // 记录所有的监听器
 
   function dispatch(action) {
