@@ -14,6 +14,8 @@ export default (state = initState, { type, payload }) => {
       return state.filter(it => it.id !== payload)
     case userAction.UPDATEUSER:
       return state.map(it => it.id === payload.id ? { ...it, ...payload } : it)
+    case userAction.SETUSERS:
+      return payload
     default:
       return state
   }

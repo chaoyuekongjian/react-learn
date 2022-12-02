@@ -1,6 +1,6 @@
 import usersReducer from './users'
 import loginUserReducer from './login-user'
-import { combineReducers } from '../../redux'
+import { combineReducers } from 'redux'
 
 // const initialState = {
 //   loginUser: null,

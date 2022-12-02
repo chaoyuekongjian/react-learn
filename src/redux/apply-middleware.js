@@ -8,7 +8,7 @@ export default function(...middlewares) {
       let dispatch = () => { throw new Error("Not implemented")}
       const simpeStore = {
         getState: store.getState,
-        dispatch: store.dispatch
+        dispatch: (...args) => dispatch(...args)
       }
       // 给dispatch赋值
       const dispatchProducers = middlewares.map(middleware => middleware(simpeStore))
