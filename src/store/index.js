@@ -4,7 +4,8 @@ import { getAddUserAction, getDeleteUserAction } from './action/user-action'
 import reducer from './reducer'
 import { applyMiddleware, createStore } from 'redux'
 import logger from 'redux-logger' // logger中间件一般要放到最后一个
-import thunk from 'redux-thunk'
+import createSagaMiddleware from '../redux-saga'
+import rootSata from './saga'
 
 // function logger1(store) {
 //   return function(next) {
@@ -17,12 +18,15 @@ import thunk from 'redux-thunk'
 //   }
 // }
 
-const store = createStore(reducer, 
-  applyMiddleware(
-    thunk, 
-    logger
-  ))
+const sagMid = createSagaMiddleware()
 
+const store = createStore(reducer,
+applyMiddleware(
+  sagMid,
+  logger
+))
 
+const task = sagMid.run(rootSata)
+console.log(task)
 
 export default store

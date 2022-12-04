@@ -28,7 +28,7 @@ export function getUpdateUserAction(user) {
 
 export function getSetUserAction(user) {
   return {
-    type: SETUSER,
+    type: SETUSERS,
     payload: user
   }
 }
