@@ -1,3 +1,11 @@
 export default class Task {
+
+  constructor(next) {
+    this.next = next
+  }
     
-}0
+  cancel() {
+    this.next(null, null, true)
+  }
+
+}

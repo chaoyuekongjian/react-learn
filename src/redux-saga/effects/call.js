@@ -1,4 +1,5 @@
 import { createEffect, effectTypes } from "../effect-helper"
+import isPromise from 'is-promise'
 
 // 1. 提供一个call函数 用于参数call effect
 export function call(fn, ...args) {
@@ -17,5 +18,12 @@ export function call(fn, ...args) {
 
 // 2. 处理call effect
 export function runCallEffect(env, effect, next) {
-    
+    const { context, fn, args } = effect.payload
+    // d调用函数得到函数的结果
+    const result = fn.call(context, ...args)
+    if (isPromise(result)) {
+        result.then(v => next(v)).catch(err => next(null, err))
+        return
+    }
+    next(result)
 }

@@ -8,7 +8,9 @@ export const effectTypes = {
     TAKE: 'TAKE',
     PUT: 'PUT',
     FORK: 'FORK',
-    ALL: 'ALL'
+    ALL: 'ALL',
+    SELECT: 'SELECT',
+    CANCEL: 'CANCEL'
 }
 
 const effectName = '@@redux-saga/IO'

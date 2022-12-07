@@ -27,6 +27,5 @@ applyMiddleware(
 ))
 
 const task = sagMid.run(rootSata)
-console.log(task)
 
 export default store

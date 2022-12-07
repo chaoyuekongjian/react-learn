@@ -59,5 +59,5 @@ export default function(env, generatorFunc, ...args) {
         }
     }
 
-    return new Task()
+    return new Task(next)
 }
