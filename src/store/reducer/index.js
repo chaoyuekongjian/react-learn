@@ -1,5 +1,6 @@
 import usersReducer from './users'
 import loginUserReducer from './login-user'
+import counterReducer from './counter'
 import { combineReducers } from 'redux'
 
 // const initialState = {
@@ -10,5 +11,6 @@ import { combineReducers } from 'redux'
 
 export default combineReducers({
   loginUser: loginUserReducer,
-  users: usersReducer
+  users: usersReducer,
+  counter: counterReducer
 })

@@ -1,6 +1,7 @@
 
 export const INCREASE = Symbol('increase')
 export const DECREASE = Symbol('decrease')
+// export const ASYNCINCREASE = Symbol('increase')
 
 
 export function increase() {

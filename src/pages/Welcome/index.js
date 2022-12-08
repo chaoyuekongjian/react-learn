@@ -1,6 +1,7 @@
 import React from 'react'
 import { Provider } from 'react-redux'
 import store from '../../store'
+import CounterContainer from '../../components/Counter'
 
 export default function Welcome() {
   return (
@@ -8,7 +9,7 @@ export default function Welcome() {
       <h1>Welcome</h1>
       <span>作者：李义</span>
       <Provider store={store}>
-        <div></div>
+        <CounterContainer />
       </Provider>
     </div>
   )
