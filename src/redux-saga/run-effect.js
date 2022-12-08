@@ -1,5 +1,5 @@
 import { effectTypes } from "./effect-helper";
-import { runCallEffect, runCancelEffect, runForkEffect, runPutEffect, runSelectEffect, runTakeEffect } from "./effects";
+import { runAllEffect, runCallEffect, runCancelEffect, runForkEffect, runPutEffect, runSelectEffect, runTakeEffect } from "./effects";
 
 /**
  * 处理effect对象
@@ -27,6 +27,9 @@ export default function (env, effect, next) {
             break
         case effectTypes.CANCEL:
             runCancelEffect(env, effect, next)
+            break
+        case effectTypes.ALL:
+            runAllEffect(env, effect, next)
             break
         default:
             throw new Error('类型错误')

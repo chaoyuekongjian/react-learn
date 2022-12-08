@@ -15,34 +15,44 @@ export default function(env, generatorFunc, ...args) {
     const generator = generatorFunc(...args)
     console.log(generator)
     if (isGenerator(generator)) { // 如果是生成器函数
-        // 不断调用next 知道迭代结束
-        next()
+        // 不断调用next 直到迭代结束
+        // next()  
+        return proc(env, generator)
     } else {
         console.log('普通函数')
     }
 
+}
+
+export function proc(env, iterator) {
+    const cbObj = {
+        callback: null
+    }
+    next()
     /**
      * 
      * @param {*} value 正常调用generator.next时，传递的值
      * @param {*} err 错误对象
      * @param {*} isOver 是否结束
      */
-    function next(nextValue, err, isOver) {
+     function next(nextValue, err, isOver) {
         let result // 记录迭代的结果 { value: xxx, done: false | true }
         // 情况1：调用generator.next(value)
         // 情况2：调用generator.throw(value)
         // 情况3：调用generator.return()
         if (err) {
-            result = generator.throw(err)
+            result = iterator.throw(err)
         } else if (isOver) {
-            result = generator.retrun()
+            cbObj.callback && cbObj.callback()
+            result = iterator.retrun()
         } else {
-            result = generator.next(nextValue)
+            result = iterator.next(nextValue)
         }
         const { value, done } = result
         if (done) {
             // 迭代结束
             console.log('迭代器结束')
+            cbObj.callback && cbObj.callback()
             return
         }
         // 如果没有结束
@@ -59,5 +69,5 @@ export default function(env, generatorFunc, ...args) {
         }
     }
 
-    return new Task(next)
+    return new Task(next, cbObj)
 }

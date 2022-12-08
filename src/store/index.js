@@ -4,7 +4,7 @@ import { getAddUserAction, getDeleteUserAction } from './action/user-action'
 import reducer from './reducer'
 import { applyMiddleware, createStore } from 'redux'
 import logger from 'redux-logger' // logger中间件一般要放到最后一个
-import createSagaMiddleware from '../redux-saga'
+import createSagaMiddleware from 'redux-saga'
 import rootSata from './saga'
 
 // function logger1(store) {
